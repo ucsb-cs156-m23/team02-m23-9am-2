@@ -52,7 +52,7 @@ public class HelpRequestController extends ApiController {
             @Parameter(name="requesterEmail") @RequestParam String requesterEmail,
             @Parameter(name="teamId") @RequestParam String teamId,
             @Parameter(name="tableOrBreakoutRoom") @RequestParam String tableOrBreakoutRoom,
-            @Parameter(name="date (in iso format, e.g. YYYY-mm-ddTHH:MM:SS; see https://en.wikipedia.org/wiki/ISO_8601)") @RequestParam("requestTime") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime requestTime,
+            //@Parameter(name="date (in iso format, e.g. YYYY-mm-ddTHH:MM:SS; see https://en.wikipedia.org/wiki/ISO_8601)") @RequestParam("requestTime") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime requestTime,
             @Parameter(name="explaination") @RequestParam String explaination,
             @Parameter(name="solved") @RequestParam boolean solved)
             throws JsonProcessingException {
@@ -63,7 +63,7 @@ public class HelpRequestController extends ApiController {
         log.info("requesterEmail={}", requesterEmail);
         log.info("teamId={}", teamId);
         log.info("tableOrBreakoutRoom={}", tableOrBreakoutRoom);
-        log.info("requestTime={}", requestTime);
+        //log.info("requestTime={}", requestTime);
         log.info("explaination={}", explaination);
         log.info("solved={}", solved);
 
@@ -71,7 +71,7 @@ public class HelpRequestController extends ApiController {
         helpRequest.setRequesterEmail(requesterEmail);
         helpRequest.setTeamId(teamId);
         helpRequest.setTableOrBreakoutRoom(tableOrBreakoutRoom);
-        helpRequest.setRequestTime(requestTime);
+        //helpRequest.setRequestTime(requestTime);
         helpRequest.setExplaination(explaination);
         helpRequest.setSolved(solved);
 
