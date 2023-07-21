@@ -1,4 +1,4 @@
-/*package edu.ucsb.cs156.example.entities;
+package edu.ucsb.cs156.example.entities;
 
 import java.time.LocalDateTime;
 
@@ -29,4 +29,3 @@ public class HelpRequest {
   private String explaination;
   private boolean solved;
 }
-*/
