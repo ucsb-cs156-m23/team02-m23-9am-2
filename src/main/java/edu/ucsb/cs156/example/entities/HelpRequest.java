@@ -1,4 +1,4 @@
-package edu.ucsb.cs156.example.entities;
+/*package edu.ucsb.cs156.example.entities;
 
 import java.time.LocalDateTime;
 
@@ -26,6 +26,7 @@ public class HelpRequest {
   private String teamId;
   private String tableOrBreakoutRoom;
   private LocalDateTime requestTime;
-  private String explanation;
+  private String explaination;
   private boolean solved;
 }
+*/

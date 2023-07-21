@@ -1,4 +1,4 @@
-package edu.ucsb.cs156.example.repositories;
+/*package edu.ucsb.cs156.example.repositories;
 
 import edu.ucsb.cs156.example.entities.HelpRequest;
 
@@ -9,4 +9,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface HelpRequestRepository extends CrudRepository<HelpRequest, Long> {
   
-}
+}*/
