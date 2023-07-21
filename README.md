@@ -2,12 +2,16 @@
 
 Instructions: <https://ucsb-cs156.github.io/m23/lab/team02.html>
 
-Addi- UCSB Dining Commons Menu
-Andrew- UCSB Organization
-Bill- Recommendation Request
-Charlie- Menu Item Review
-Mohamed- Help Request
-UNASSIGNED- Articles
+```
+| Table                       | Team Member  | Github Id     |
+|-----------------------------|--------------|---------------|
+| `UCSBDiningCommonsMenuItem` | Addi         | adityapatil834|
+| `UCSBOrganization`          | Andrew       | andrewthaii   |
+| `RecommendationRequest`     | Bill         | abcdefucsb    |
+| `MenuItemReview`            | Charlie      | cjyu81        |
+| `HelpRequest`               | Mohamed      |Mohamed-Elfouly|
+| `Articles`                  | Unassigned   | N/A           |
+```
 
 Deployments:
 
