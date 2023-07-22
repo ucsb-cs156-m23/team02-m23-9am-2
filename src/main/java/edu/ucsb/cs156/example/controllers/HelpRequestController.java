@@ -52,7 +52,9 @@ public class HelpRequestController extends ApiController {
             @Parameter(name="requesterEmail") @RequestParam String requesterEmail,
             @Parameter(name="teamId") @RequestParam String teamId,
             @Parameter(name="tableOrBreakoutRoom") @RequestParam String tableOrBreakoutRoom,
-            @Parameter(name="date") @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) String requestTime,
+            @Parameter(name="date") @RequestParam 
+            //@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) 
+            String requestTime,
             @Parameter(name="explanation") @RequestParam String explanation,
             @Parameter(name="solved") @RequestParam boolean solved)
             throws JsonProcessingException {
