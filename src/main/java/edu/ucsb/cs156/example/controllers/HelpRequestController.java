@@ -52,9 +52,7 @@ public class HelpRequestController extends ApiController {
             @Parameter(name="requesterEmail") @RequestParam String requesterEmail,
             @Parameter(name="teamId") @RequestParam String teamId,
             @Parameter(name="tableOrBreakoutRoom") @RequestParam String tableOrBreakoutRoom,
-            @Parameter(name="date") @RequestParam 
-            //@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) 
-            String requestTime,
+            @Parameter(name="date") @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime requestTime,
             @Parameter(name="explanation") @RequestParam String explanation,
             @Parameter(name="solved") @RequestParam boolean solved)
             throws JsonProcessingException {
@@ -62,18 +60,18 @@ public class HelpRequestController extends ApiController {
         // For an explanation of @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
         // See: https://www.baeldung.com/spring-date-parameters
 
-        log.info("requesterEmail={}", requesterEmail);
-        log.info("teamId={}", teamId);
-        log.info("tableOrBreakoutRoom={}", tableOrBreakoutRoom);
-        log.info("requestTime={}", LocalDateTime.parse(requestTime));
-        log.info("explanation={}", explanation);
-        log.info("solved={}", solved);
+        //log.info("requesterEmail={}", requesterEmail);
+        //log.info("teamId={}", teamId);
+        //log.info("tableOrBreakoutRoom={}", tableOrBreakoutRoom);
+        //log.info("requestTime={}", requestTime);
+        //log.info("explanation={}", explanation);
+        //log.info("solved={}", solved);
 
         HelpRequest helpRequest = new HelpRequest();
         helpRequest.setRequesterEmail(requesterEmail);
         helpRequest.setTeamId(teamId);
         helpRequest.setTableOrBreakoutRoom(tableOrBreakoutRoom);
-        helpRequest.setRequestTime(LocalDateTime.parse(requestTime));
+        helpRequest.setRequestTime(requestTime);
         helpRequest.setExplanation(explanation);
         helpRequest.setSolved(solved);
 
