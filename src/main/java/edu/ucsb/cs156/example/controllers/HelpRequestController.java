@@ -63,7 +63,7 @@ public class HelpRequestController extends ApiController {
         //log.info("requesterEmail={}", requesterEmail);
         //log.info("teamId={}", teamId);
         //log.info("tableOrBreakoutRoom={}", tableOrBreakoutRoom);
-        //log.info("requestTime={}", requestTime);
+        log.info("requestTime={}", requestTime);
         //log.info("explanation={}", explanation);
         //log.info("solved={}", solved);
 
