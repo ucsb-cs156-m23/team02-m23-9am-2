@@ -30,7 +30,7 @@ import javax.validation.Valid;
 @Slf4j
 public class MenuItemReviewController extends ApiController {
 
-    private int count = 0;
+    private int count = 0;// Remember to wipe database an test id 0 entry
 
     @Autowired
     MenuItemReviewRepository menuItemReviewRepository;
