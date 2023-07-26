@@ -30,10 +30,12 @@ import javax.validation.Valid;
 @Slf4j
 public class MenuItemReviewController extends ApiController {
 
+    private int count = 0;
+
     @Autowired
     MenuItemReviewRepository menuItemReviewRepository;
 
-    @Operation(summary= "All Menu Item Reviews")
+    @Operation(summary= "Get all reviews")
     @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/all")
     public Iterable<MenuItemReview> allReviews() {
@@ -45,9 +47,9 @@ public class MenuItemReviewController extends ApiController {
     @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("")
     public MenuItemReview getById(
-            @Parameter(name="code") @RequestParam String code) {
-        MenuItemReview review = menuItemReviewRepository.findById(code)
-                .orElseThrow(() -> new EntityNotFoundException(MenuItemReview.class, code));
+            @Parameter(name="id") @RequestParam long id) {
+        MenuItemReview review = menuItemReviewRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(MenuItemReview.class, id));
 
         return review;
     }
@@ -56,8 +58,7 @@ public class MenuItemReviewController extends ApiController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/post")
     public MenuItemReview postReview(
-        @Parameter(name="id") @RequestParam long id,
-        @Parameter(name="itemId") @RequestParam Long itemId,
+        @Parameter(name="itemId") @RequestParam long itemId,
         @Parameter(name="reviewerEmail") @RequestParam String reviewerEmail,
         @Parameter(name="stars") @RequestParam int stars,
         @Parameter(name="localDateTime") @RequestParam LocalDateTime localDateTime,
@@ -66,7 +67,8 @@ public class MenuItemReviewController extends ApiController {
         {
 
         MenuItemReview review = new MenuItemReview();
-        review.setId(id);
+        review.setId(count);
+        count += 1;
         review.setItemId(itemId);
         review.setReviewerEmail(reviewerEmail);
         review.setStars(stars);
@@ -78,30 +80,30 @@ public class MenuItemReviewController extends ApiController {
         return savedReview;
     }
 
-    @Operation(summary= "Delete a MenuItemReview")
+    @Operation(summary= "Delete a review")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("")
     public Object deleteReview(
-            @Parameter(name="code") @RequestParam String code) {
-        MenuItemReview review = menuItemReviewRepository.findById(code)
-                .orElseThrow(() -> new EntityNotFoundException(MenuItemReview.class, code));
+            @Parameter(name="id") @RequestParam long id) {
+        MenuItemReview review = menuItemReviewRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(MenuItemReview.class, id));
 
         menuItemReviewRepository.delete(review);
-        return genericMessage("MenuItemReview with id %s deleted".formatted(code));
+        return genericMessage("MenuItemReview with id %s deleted".formatted(id));
     }
 
     @Operation(summary= "Update a single review")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("")
     public MenuItemReview updateReview(
-            @Parameter(name="code") @RequestParam String code,
+            @Parameter(name="id") @RequestParam long id,
             @RequestBody @Valid MenuItemReview incoming) {
 
-        MenuItemReview review = menuItemReviewRepository.findById(code)
-                .orElseThrow(() -> new EntityNotFoundException(MenuItemReview.class, code));
+        MenuItemReview review = menuItemReviewRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(MenuItemReview.class, id));
 
 
-        review.setId(incoming.getId());  
+        review.setId(id);  
         review.setItemId(incoming.getItemId());
         review.setReviewerEmail(incoming.getReviewerEmail());
         review.setStars(incoming.getStars());
