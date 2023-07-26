@@ -33,7 +33,7 @@ public class MenuItemReviewController extends ApiController {
     @Autowired
     MenuItemReviewRepository menuItemReviewRepository;
 
-    @Operation(summary= "Menu Item Review")
+    @Operation(summary= "All Menu Item Reviews")
     @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/all")
     public Iterable<MenuItemReview> allReviews() {
@@ -106,7 +106,7 @@ public class MenuItemReviewController extends ApiController {
         review.setReviewerEmail(incoming.getReviewerEmail());
         review.setStars(incoming.getStars());
         review.setLocalDateTime(incoming.getLocalDateTime());
-        //review.setComments(incoming.getComments());
+        review.setComments(incoming.getComments());
 
         menuItemReviewRepository.save(review);
 
