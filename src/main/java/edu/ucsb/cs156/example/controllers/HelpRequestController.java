@@ -52,7 +52,8 @@ public class HelpRequestController extends ApiController {
             @Parameter(name="requesterEmail") @RequestParam String requesterEmail,
             @Parameter(name="teamId") @RequestParam String teamId,
             @Parameter(name="tableOrBreakoutRoom") @RequestParam String tableOrBreakoutRoom,
-            @Parameter(name="date") @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime requestTime,
+            //@Parameter(name="date") @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime requestTime,
+            @Parameter(name="date", description="date (in iso format, e.g. YYYY-mm-ddTHH:MM:SS; see https://en.wikipedia.org/wiki/ISO_8601", example="2023-12-01T13:15") @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime requestTime,
             @Parameter(name="explanation") @RequestParam String explanation,
             @Parameter(name="solved") @RequestParam boolean solved)
             throws JsonProcessingException {
@@ -63,7 +64,7 @@ public class HelpRequestController extends ApiController {
         //log.info("requesterEmail={}", requesterEmail);
         //log.info("teamId={}", teamId);
         //log.info("tableOrBreakoutRoom={}", tableOrBreakoutRoom);
-        //log.info("requestTime={}", requestTime);
+        log.info("requestTime={}", requestTime);
         //log.info("explanation={}", explanation);
         //log.info("solved={}", solved);
 
