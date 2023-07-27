@@ -25,7 +25,6 @@ public class RecommendationRequest {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private String code;
-  private String name;
   private boolean hasSackMeal;
   private boolean hasTakeOutMeal;
   private boolean hasDiningCam;
@@ -37,6 +36,14 @@ public class RecommendationRequest {
   private LocalDateTime localDateTime;
 }
 ////////////////////////////////////////////
+
+
+
+
+
+
+  
+  
 
 
 
