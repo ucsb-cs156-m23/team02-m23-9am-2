@@ -1,0 +1,12 @@
+package edu.ucsb.cs156.example.entities;
+import edu.ucsb.cs156.example.entities.UCSBDate;
+import edu.ucsb.cs156.example.entities.UCSBDiningCommonsMenuItem;
+
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+
+@Repository
+public interface UCSBDiningCommonsMenuItemRepository extends CrudRepository<UCSBDiningCommonsMenuItem, Long> {
+    Iterable<UCSBDiningCommonsMenuItem> findAllByName(String name);
+}
