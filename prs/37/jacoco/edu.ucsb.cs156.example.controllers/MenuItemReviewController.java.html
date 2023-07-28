@@ -68,7 +68,7 @@ import javax.validation.Valid;
         {
 
 <span class="fc" id="L70">        MenuItemReview review = new MenuItemReview();</span>
-<span class="fc" id="L71">        review.setId(0);</span>
+        //review.setId(0);
 <span class="fc" id="L72">        review.setItemId(itemId);</span>
 <span class="fc" id="L73">        review.setReviewerEmail(reviewerEmail);</span>
 <span class="fc" id="L74">        review.setStars(stars);</span>
@@ -103,7 +103,7 @@ import javax.validation.Valid;
 <span class="fc" id="L103">                .orElseThrow(() -&gt; new EntityNotFoundException(MenuItemReview.class, id));</span>
 
 
-<span class="fc" id="L106">        review.setId(incoming.getId());  </span>
+        //review.setId(incoming.getId());  
 <span class="fc" id="L107">        review.setItemId(incoming.getItemId());</span>
 <span class="fc" id="L108">        review.setReviewerEmail(incoming.getReviewerEmail());</span>
 <span class="fc" id="L109">        review.setStars(incoming.getStars());</span>
