@@ -1,5 +1,4 @@
-package edu.ucsb.cs156.example.entities;
-import edu.ucsb.cs156.example.entities.UCSBDate;
+package edu.ucsb.cs156.example.repositories;
 import edu.ucsb.cs156.example.entities.UCSBDiningCommonsMenuItem;
 
 import org.springframework.data.repository.CrudRepository;
