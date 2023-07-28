@@ -30,7 +30,7 @@ import javax.validation.Valid;
 @Slf4j
 public class MenuItemReviewController extends ApiController {
 
-    private int count = 0;// Remember to wipe database an test id 0 entry
+    private int count = 0;// Remember to wipe database and test id 0 entry
 
     @Autowired
     MenuItemReviewRepository menuItemReviewRepository;
@@ -58,6 +58,7 @@ public class MenuItemReviewController extends ApiController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/post")
     public MenuItemReview postReview(
+        // @Parameter(name="id") @RequestParam long id,
         @Parameter(name="itemId") @RequestParam long itemId,
         @Parameter(name="reviewerEmail") @RequestParam String reviewerEmail,
         @Parameter(name="stars") @RequestParam int stars,
@@ -68,7 +69,6 @@ public class MenuItemReviewController extends ApiController {
 
         MenuItemReview review = new MenuItemReview();
         review.setId(count);
-        count += 1;
         review.setItemId(itemId);
         review.setReviewerEmail(reviewerEmail);
         review.setStars(stars);
@@ -103,7 +103,7 @@ public class MenuItemReviewController extends ApiController {
                 .orElseThrow(() -> new EntityNotFoundException(MenuItemReview.class, id));
 
 
-        review.setId(id);  
+        review.setId(incoming.getId());  
         review.setItemId(incoming.getItemId());
         review.setReviewerEmail(incoming.getReviewerEmail());
         review.setStars(incoming.getStars());
