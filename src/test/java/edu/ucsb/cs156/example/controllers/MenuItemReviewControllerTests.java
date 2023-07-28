@@ -88,7 +88,6 @@ public class MenuItemReviewControllerTests extends ControllerTestCase {
                 // arrange
                 LocalDateTime ldt = LocalDateTime.parse("2023-07-27T22:17:03.403");
                 MenuItemReview mir = MenuItemReview.builder()
-                                .id(23)
                                 .itemId(456L)
                                 .reviewerEmail("brett@ucsb.edu")
                                 .stars(4)
@@ -139,7 +138,6 @@ public class MenuItemReviewControllerTests extends ControllerTestCase {
                 LocalDateTime ldt2 = LocalDateTime.parse("2022-07-27T22:17:03.403");
 
                 MenuItemReview mir1 = MenuItemReview.builder()
-                                .id(40)
                                 .itemId(526L)
                                 .reviewerEmail("naggarond@ucsb.edu")
                                 .stars(3)
@@ -148,7 +146,6 @@ public class MenuItemReviewControllerTests extends ControllerTestCase {
                                 .build();
 
                 MenuItemReview mir2 = MenuItemReview.builder()
-                                .id(46)
                                 .itemId(527L)
                                 .reviewerEmail("norsca@ucsb.edu")
                                 .stars(5)
@@ -191,7 +188,12 @@ public class MenuItemReviewControllerTests extends ControllerTestCase {
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                post("/api/menuitemreview/post?itemId")
+                                post("/api/menuitemreview/post")
+                                .param("itemId","56")
+                                .param("reviewerEmail","brettania@ucsb.edu")
+                                .param("stars","3")
+                                .param("localDateTime","2023-07-27T22:17:03.403")
+                                .param("comments","I am mid about bread")
                                                 .with(csrf()))
                                 .andExpect(status().isOk()).andReturn();
 
@@ -209,7 +211,6 @@ public class MenuItemReviewControllerTests extends ControllerTestCase {
                 LocalDateTime ldt = LocalDateTime.parse("2023-07-27T22:17:03.403");
 
                 MenuItemReview review3 = MenuItemReview.builder()
-                                .id(51)
                                 .itemId(510L)
                                 .reviewerEmail("ultima@ucsb.edu")
                                 .stars(5)
@@ -261,7 +262,6 @@ public class MenuItemReviewControllerTests extends ControllerTestCase {
                 LocalDateTime ldt2 = LocalDateTime.parse("2023-07-27T22:17:03.403");
 
                 MenuItemReview review4 = MenuItemReview.builder()
-                                .id(4)
                                 .itemId(44L)
                                 .reviewerEmail("fourfourfourfour@ucsb.edu")
                                 .stars(4)
@@ -270,7 +270,6 @@ public class MenuItemReviewControllerTests extends ControllerTestCase {
                                 .build();
 
                 MenuItemReview review5 = MenuItemReview.builder()
-                                .id(4)
                                 .itemId(55L)
                                 .reviewerEmail("fives@ucsb.edu")
                                 .stars(5)
@@ -305,7 +304,6 @@ public class MenuItemReviewControllerTests extends ControllerTestCase {
                 LocalDateTime ldt = LocalDateTime.parse("2013-07-27T22:17:03.403");
 
                 MenuItemReview editedReview = MenuItemReview.builder()
-                                .id(4)
                                 .itemId(55L)
                                 .reviewerEmail("fives@ucsb.edu")
                                 .stars(5)
@@ -331,5 +329,12 @@ public class MenuItemReviewControllerTests extends ControllerTestCase {
                 Map<String, Object> json = responseToJson(response);
                 assertEquals("MenuItemReview with id 4 not found", json.get("message"));
 
+        }
+
+        @WithMockUser(roles = { "USER" })
+        @Test
+        public void test_set_id_from_user() throws Exception {
+                mockMvc.perform(post("/api/menuitemreview/post"))
+                                .andExpect(status().is(403)); // only admins can post
         }
 }

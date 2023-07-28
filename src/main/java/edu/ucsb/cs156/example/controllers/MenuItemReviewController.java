@@ -68,7 +68,7 @@ public class MenuItemReviewController extends ApiController {
         {
 
         MenuItemReview review = new MenuItemReview();
-        review.setId(count);
+        review.setId(0);
         review.setItemId(itemId);
         review.setReviewerEmail(reviewerEmail);
         review.setStars(stars);
