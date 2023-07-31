@@ -1,4 +1,3 @@
-
 package edu.ucsb.cs156.example.controllers;
 
 import edu.ucsb.cs156.example.repositories.UserRepository;
@@ -207,7 +206,7 @@ public class UCSBOrganizationControllerTests extends ControllerTestCase {
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                delete("/api/ucsborganization?orgCode=1o")
+                                delete("/api/ucsborganization?orgCode=10")
                                                 .with(csrf()))
                                 .andExpect(status().isOk()).andReturn();
 
@@ -252,14 +251,15 @@ public class UCSBOrganizationControllerTests extends ControllerTestCase {
                                 .build();
 
                 UCSBOrganization mnpEdited = UCSBOrganization.builder()
-                                .orgCode("987")
+                                .orgCode("131415")
                                 .orgTranslationShort("my nice papa")
+                                .orgTranslation("my new new porch")
                                 .inactive(true)
                                 .build();
 
                 String requestBody = mapper.writeValueAsString(mnpEdited);
 
-                when(ucsbOrganizationRepository.findById(eq("1311415"))).thenReturn(Optional.of(mnpOrig));
+                when(ucsbOrganizationRepository.findById(eq("131415"))).thenReturn(Optional.of(mnpOrig));
 
                 // act
                 MvcResult response = mockMvc.perform(
