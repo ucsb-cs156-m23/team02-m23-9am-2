@@ -21,8 +21,8 @@ import lombok.Builder;
 public class RecommendationRequest {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
-
+  private Long id;
+//code
   private String requesterEmail;
   private String professorEmail;
   private String explanation;
@@ -32,6 +32,7 @@ public class RecommendationRequest {
 
 }
 ////////////////////////////////////////////
+
 
 
 
