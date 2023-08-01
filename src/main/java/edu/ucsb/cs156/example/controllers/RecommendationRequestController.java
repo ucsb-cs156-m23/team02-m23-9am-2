@@ -1,16 +1,17 @@
 package edu.ucsb.cs156.example.controllers;
-
-import edu.ucsb.cs156.example.entities.UCSBDate;
+import edu.ucsb.cs156.example.controllers.ApiController;
 import edu.ucsb.cs156.example.entities.RecommendationRequest;
-import edu.ucsb.cs156.example.errors.EntityNotFoundException;
 import edu.ucsb.cs156.example.repositories.RecommendationRequestRepository;
-
+import edu.ucsb.cs156.example.errors.EntityNotFoundException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+
+import java.time.LocalDateTime;
 
 @Tag(name = "RecommendationRequest")
 @RequestMapping("/api/RecommendationRequest")
@@ -59,7 +62,8 @@ public class RecommendationRequestController extends ApiController {
         @Parameter(name="requesterEmail") @RequestParam String requesterEmail,
         @Parameter(name="professorEmail") @RequestParam String professorEmail,
         @Parameter(name="explanation") @RequestParam String explanation,
-        @Parameter(name="localDateTime", description="date (in iso format, e.g. YYYY-mm-ddTHH:MM:SS; see https://en.wikipedia.org/wiki/ISO_8601)", example="2023-12-01T13:15") @RequestParam("localDateTime") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime localDateTime,
+        @Parameter(name="dateRequested", description="date (in iso format, e.g. YYYY-mm-ddTHH:MM:SS; see https://en.wikipedia.org/wiki/ISO_8601)", example="2023-12-01T13:15") @RequestParam("dateRequested") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateRequested,
+        @Parameter(name="dateNeeded", description="date (in iso format, e.g. YYYY-mm-ddTHH:MM:SS; see https://en.wikipedia.org/wiki/ISO_8601)", example="2023-12-01T13:15") @RequestParam("dateNeeded") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateNeeded,
         //@Parameter(name="setdateRequested") @RequestParam LocalDateTime local,
         //@Parameter(name="setdateNeeded") @RequestParam LocalDateTime setdateNeeded,
         @Parameter(name="done") @RequestParam boolean done)
@@ -67,12 +71,12 @@ public class RecommendationRequestController extends ApiController {
         {
 
         RecommendationRequest recreq = new RecommendationRequest();
-        recreq.setrequesterEmail(requesterEmail);
-        recreq.setsetprofessorEmail(professorEmail);
-        recreq.setexplanation(explanation);
-        recreq.setdateRequested(localDateTime);
-        recreq.setdateNeeded(localDateTime);
-        recreq.setdone(done);
+        recreq.setRequesterEmail(requesterEmail);
+        recreq.setProfessorEmail(professorEmail);
+        recreq.setExplanation(explanation);
+        recreq.setDateRequested(dateRequested);
+        recreq.setDateNeeded(dateNeeded);
+        recreq.setDone(done);
         //commons.setLongitude(longitude);
 
         RecommendationRequest savedrecreq = recommendationRequestRepository.save(recreq);
@@ -103,12 +107,12 @@ public class RecommendationRequestController extends ApiController {
                 .orElseThrow(() -> new EntityNotFoundException(RecommendationRequest.class, code));
 
 
-        recreq.setrequesterEmail(newinfo.getsetrequesterEmail());
-        recreq.setprofessorEmail(newinfo.getsetprofessorEmail());
-        recreq.setexplanation(newinfo.getexplanation());
-        recreq.setdateRequested(newinfo.getdateRequested());
-        recreq.setdateNeeded(newinfo.getdateNeeded());
-        recreq.setdone(newinfo.getdone());
+        recreq.setRequesterEmail(newinfo.getRequesterEmail());
+        recreq.setProfessorEmail(newinfo.getProfessorEmail());
+        recreq.setExplanation(newinfo.getExplanation());
+        recreq.setDateRequested(newinfo.getDateRequested());
+        recreq.setDateNeeded(newinfo.getDateNeeded());
+        recreq.setDone(newinfo.getDone());
 
         recommendationRequestRepository.save(recreq);
 
