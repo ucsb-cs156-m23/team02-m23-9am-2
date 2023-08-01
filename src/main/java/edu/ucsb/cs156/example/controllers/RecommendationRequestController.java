@@ -47,9 +47,9 @@ public class RecommendationRequestController extends ApiController {
     @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("")
     public RecommendationRequest getById(
-            @Parameter(name="code") @RequestParam String code) {
-        RecommendationRequest recreq = recommendationRequestRepository.findById(code)
-                .orElseThrow(() -> new EntityNotFoundException(RecommendationRequest.class, code));
+            @Parameter(name="id") @RequestParam long id) {
+        RecommendationRequest recreq = recommendationRequestRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(RecommendationRequest.class, id));
 
         return recreq;
     }
@@ -88,23 +88,23 @@ public class RecommendationRequestController extends ApiController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("")
     public Object deleterecreq(
-            @Parameter(name="code") @RequestParam String code) {
-        RecommendationRequest recreq = recommendationRequestRepository.findById(code)
-                .orElseThrow(() -> new EntityNotFoundException(RecommendationRequest.class, code));
+            @Parameter(name="id") @RequestParam long id) {
+        RecommendationRequest recreq = recommendationRequestRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(RecommendationRequest.class, id));
 
         recommendationRequestRepository.delete(recreq);
-        return genericMessage("Recommendationrequest with the id %s is deleted".formatted(code));
+        return genericMessage("Recommendationrequest with the id %s is deleted".formatted(id));
     }
 
     @Operation(summary= "Update a RecommendationRequest")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("")
     public RecommendationRequest updaterecreq(
-            @Parameter(name="code") @RequestParam String code,
+            @Parameter(name="id") @RequestParam long id,
             @RequestBody @Valid RecommendationRequest newinfo) {
 
-        RecommendationRequest recreq = recommendationRequestRepository.findById(code)
-                .orElseThrow(() -> new EntityNotFoundException(RecommendationRequest.class, code));
+        RecommendationRequest recreq = recommendationRequestRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(RecommendationRequest.class, id));
 
 
         recreq.setRequesterEmail(newinfo.getRequesterEmail());
