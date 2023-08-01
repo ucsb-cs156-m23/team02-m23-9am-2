@@ -93,7 +93,7 @@ public class RecommendationRequestController extends ApiController {
                 .orElseThrow(() -> new EntityNotFoundException(RecommendationRequest.class, id));
 
         recommendationRequestRepository.delete(recreq);
-        return genericMessage("Recommendationrequest with the id %s is deleted".formatted(id));
+        return genericMessage("RecommendationRequest with id %s deleted".formatted(id));
     }
 
     @Operation(summary= "Update a RecommendationRequest")
